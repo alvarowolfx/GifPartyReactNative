@@ -1,0 +1,3 @@
+rootProject.name = 'GifParty'
+
+include ':app'

@@ -1,0 +1,37 @@
+{
+  "name": "GifParty",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "test": "mocha --compilers js:./test/compiler --require ./test/test_helper 'app/**/*.spec.js'",
+    "test:watch": "npm run test -- --watch"
+  },
+  "dependencies": {
+    "react": "^0.14.8",
+    "react-native": "^0.23.0",
+    "immutable": "^3.7.6",
+    "react-native-gifted-spinner": "0.0.3",
+    "react-native-router-flux": "^3.2.6",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^1.0.3",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.6.5",
+    "babel-preset-airbnb": "^1.1.1",
+    "babel-preset-react-native": "^1.5.1",
+    "chai": "^3.5.0",
+    "chai-immutable": "^1.5.3",
+    "enzyme": "^2.0.0",
+    "fetch-mock": "^4.1.1",
+    "mocha": "^2.4.5",
+    "react": "^0.14.7",
+    "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-native-mock": "alvarowolfx/react-native-mock#add-navigation-experimental"
+  }
+}
