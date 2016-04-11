@@ -10,7 +10,7 @@ import { shallow, mount, render } from 'enzyme';
 import { expect, spy } from 'chai';
 import { Provider } from 'react-redux';
 
-import GifPartyApp from '../app/index';
+import GifPartyApp from './index';
 
 describe('GifPartyApp', () => {
     it('should be wrapped on redux provider', () => {

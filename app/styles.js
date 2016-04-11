@@ -70,6 +70,11 @@ const AppStyleSheet = StyleSheet.create({
     successButtonIcon: {
         marginLeft: 15,
         color: 'white'
+    },
+    loadingSpinner: {
+        backgroundColor:'black',
+        padding:20,
+        borderRadius: 10
     }
 });
 
