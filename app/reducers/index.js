@@ -5,8 +5,11 @@
 'use strict';
 
 import { combineReducers } from 'redux';
+import { searchGiphyReducer, trendingGiphyReducer } from './giphy/giphyReducer';
 
-//const rootReducer = combineReducers({});
-const rootReducer = () => {};
+const rootReducer = combineReducers({
+    search: searchGiphyReducer,
+    trending: trendingGiphyReducer
+});
 
 export default rootReducer;

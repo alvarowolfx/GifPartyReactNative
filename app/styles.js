@@ -75,6 +75,18 @@ const AppStyleSheet = StyleSheet.create({
         backgroundColor:'black',
         padding:20,
         borderRadius: 10
+    },
+    pageContainer: {
+        flex: 1,
+        paddingTop: 64,
+        backgroundColor: Styles.primaryColor
+    },
+    containerCentered: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    containerFlexStart: {
+        justifyContent: 'flex-end'
     }
 });
 
