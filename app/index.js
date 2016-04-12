@@ -28,8 +28,8 @@ export default class GifPartyApp extends Component {
             <Provider store={store}>
                 <Router navigationBarStyle={styles.header} titleStyle={styles.headerTitle} backButtonTextStyle={styles.headerTitle} sceneStyle={styles.content}>
                     <Scene key="root">
-                        <Scene key="home" component={HomePage} title="GifParty" />
-                        <Scene key="trending" initial={true}  component={TrendingGiphyPage} title="Trending"/>
+                        <Scene key="home" initial={true} component={HomePage} title="GifParty" />
+                        <Scene key="trending" component={TrendingGiphyPage} title="Trending"/>
                     </Scene>
                 </Router>
             </Provider>
