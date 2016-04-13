@@ -8,7 +8,7 @@ var babel = require('babel-core');
 var origJs = require.extensions['.js'];
 
 /* Compile with babel node modules published in es6 */
-var listOfEs6Modules = ['react-native-router-flux','react-native-tabs', 'react-native-gifted-spinner'];
+var listOfEs6Modules = ['react-native-router-flux','react-native-tabs', 'react-native-gifted-spinner', 'react-native-vector-icons'];
 
 function compile(module, filename) {
     var src = fs.readFileSync(filename, 'utf8');

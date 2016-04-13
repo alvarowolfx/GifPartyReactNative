@@ -14,7 +14,6 @@ class TrendingGiphyPage extends BaseGiphyPage {
 }
 
 function mapStateToProps(state) {
-    console.log(state.trending.toJS());
     return {
         loading: state.trending.get('isFetching'),
         entries: state.trending.get('entries').toJS()

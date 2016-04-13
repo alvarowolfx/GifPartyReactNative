@@ -7,6 +7,7 @@ export const REQUEST_TRENDING_GIPHY_SUCCESS = 'REQUEST_TRENDING_GIPHY_SUCCESS';
 export const REQUEST_TRENDING_GIPHY_FAILED = 'REQUEST_TRENDING_GIPHY_FAILED';
 
 export const REQUEST_SEARCH_GIPHY = 'REQUEST_SEARCH_GIPHY';
+export const SET_CURRENT_SEARCH = 'SET_CURRENT_SEARCH';
 export const REQUEST_SEARCH_GIPHY_SUCCESS = 'REQUEST_SEARCH_GIPHY_SUCCESS';
 export const REQUEST_SEARCH_GIPHY_FAILED = 'REQUEST_SEARCH_GIPHY_FAILED';
 
@@ -87,4 +88,11 @@ export function fetchTrendingGiphy(quantity:number) {
             .then(entries => dispatch(requestTrendingGiphySuccess(entries)))
             .catch(err => dispatch(requestTrendingGiphyFailed(err)));
     };
+}
+
+export function setCurrentSearch(query:string){
+    return {
+        type: SET_CURRENT_SEARCH,
+        query
+    }
 }

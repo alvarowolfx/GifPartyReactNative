@@ -11,14 +11,24 @@ describe('giphyReducers', () => {
         it('has an initial state', () => {
             const action = {type: 'whatever'};
             const nextState = searchGiphyReducer(undefined, action);
-            expect(nextState).to.equal(fromJS({}))
+            expect(nextState).to.equal(fromJS({
+                currentSearch: null,
+                searches: {}
+            }))
+        });
+
+        it('should handle SET_CURRENT_SEARCH', () => {
+            const action = {type: 'SET_CURRENT_SEARCH', query: 'cats'};
+            const nextState = searchGiphyReducer(undefined, action);
+
+            expect(nextState.get('currentSearch')).to.equal('cats');
         });
 
         it('should handle REQUEST_SEARCH_GIPHY', () => {
             const action = {type: 'REQUEST_SEARCH_GIPHY', query: 'cats'};
             const nextState = searchGiphyReducer(undefined, action);
 
-            let subEntriesByQuery = nextState.get('cats');
+            let subEntriesByQuery = nextState.getIn(['searches','cats']);
             expect(subEntriesByQuery).to.not.be.undefined;
             expect(subEntriesByQuery.get('isFetching')).to.equal(true);
             expect(subEntriesByQuery.get('error')).to.equal(null);
@@ -34,9 +44,9 @@ describe('giphyReducers', () => {
             };
             const nextState = searchGiphyReducer(undefined, action);
 
-            expect(nextState.getIn(['cats', 'isFetching'])).to.equal(false);
-            expect(nextState.getIn(['cats', 'error'])).to.equal(null);
-            expect(nextState.getIn(['cats', 'entries']).count()).to.equal(1);
+            expect(nextState.getIn(['searches','cats', 'isFetching'])).to.equal(false);
+            expect(nextState.getIn(['searches','cats', 'error'])).to.equal(null);
+            expect(nextState.getIn(['searches','cats', 'entries']).count()).to.equal(1);
         });
 
         it('should handle REQUEST_SEARCH_GIPHY_FAILED', () => {
@@ -48,8 +58,8 @@ describe('giphyReducers', () => {
             };
             const nextState = searchGiphyReducer(undefined, action);
 
-            expect(nextState.getIn(['cats', 'isFetching'])).to.equal(false);
-            expect(nextState.getIn(['cats', 'error'])).to.equal(error);
+            expect(nextState.getIn(['searches','cats', 'isFetching'])).to.equal(false);
+            expect(nextState.getIn(['searches','cats', 'error'])).to.equal(error);
         });
     });
 

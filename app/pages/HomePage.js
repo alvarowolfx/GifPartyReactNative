@@ -3,15 +3,21 @@
  */
 
 import React, {Component, Text, View, StyleSheet, TouchableOpacity, Alert, ScrollView} from "react-native";
+import { connect } from 'react-redux';
 import AppStyleSheet, {Styles, getMaterialDesignElevation} from "../styles";
 import {Actions} from 'react-native-router-flux';
+import { setCurrentSearch } from '../reducers/giphy/giphyActions'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default class HomePage extends Component {
+class HomePage extends Component {
 
     constructor(props) {
         super(props);
-        console.warn = () => {};
+    }
+
+    goToSearchGiphyPage(query:string){
+        this.props.dispatch(setCurrentSearch(query));
+        Actions.search();
     }
 
     render() {
@@ -32,9 +38,9 @@ export default class HomePage extends Component {
             <View style={styles.container}>
                 <SquareButton onPress={() => Actions.trending()}
                               title="Trending" icon="star"/>
-                <SquareButton onPress={() => Actions.trending()}
+                <SquareButton onPress={() => this.goToSearchGiphyPage('cats')}
                               title="Cats" icon="social-octocat"/>
-                <SquareButton onPress={() => Actions.trending()}
+                <SquareButton onPress={() => this.goToSearchGiphyPage('civil war')}
                               title="Civil War" icon="nuclear"/>
             </View>
         )
@@ -45,7 +51,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 64,
-        backgroundColor: Styles.primaryColor,
+        backgroundColor: Styles.primaryColorDarker,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -61,3 +68,5 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     }
 });
+
+export default connect()(HomePage);

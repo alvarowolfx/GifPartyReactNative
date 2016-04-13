@@ -6,12 +6,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import rootReducer from '../reducers';
+import rootReducer from '../reducers/index';
 
 const loggerMiddleware = createLogger();
 
 export default function configureStore(initialState){
-    return createStore(
+    const store = createStore(
         rootReducer,
         initialState,
         applyMiddleware(
@@ -19,5 +19,15 @@ export default function configureStore(initialState){
             loggerMiddleware
         )
     );
+    //HMR config for Redux
+    if(module.hot){
+        console.warn('hot module');
+
+        module.hot.accept('../reducers', () => {
+            const nextRootReducer = require('../reducers/index');
+            store.replaceReducer(nextRootReducer);
+        });
+    }
+    return store;
 }
 

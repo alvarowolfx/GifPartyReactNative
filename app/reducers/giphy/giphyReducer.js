@@ -6,6 +6,7 @@
 import {fromJS} from "immutable";
 import {
     REQUEST_SEARCH_GIPHY,
+    SET_CURRENT_SEARCH,
     REQUEST_SEARCH_GIPHY_SUCCESS,
     REQUEST_SEARCH_GIPHY_FAILED,
     REQUEST_TRENDING_GIPHY,
@@ -19,7 +20,10 @@ let trendingInitialState = fromJS({
     error: null
 });
 
-let searchInitialState = fromJS({});
+let searchInitialState = fromJS({
+    currentSearch: null,
+    searches: {}
+});
 
 export function trendingGiphyReducer(state = trendingInitialState, action){
     switch(action.type){
@@ -34,12 +38,18 @@ export function trendingGiphyReducer(state = trendingInitialState, action){
 
 export function searchGiphyReducer(state = searchInitialState, action){
     switch(action.type){
+        case SET_CURRENT_SEARCH:
+            return state.merge({
+                currentSearch: action.query
+            });
         case REQUEST_SEARCH_GIPHY:
         case REQUEST_SEARCH_GIPHY_SUCCESS:
         case REQUEST_SEARCH_GIPHY_FAILED:
             let currentState = state.get(action.query) || trendingInitialState;
             return state.merge({
-                [action.query]: giphyReducer(currentState, action)
+                searches: {
+                    [action.query]: giphyReducer(currentState, action)
+                }
             });
         default :
             return state;

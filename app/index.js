@@ -14,6 +14,7 @@ import { Scene, Router} from 'react-native-router-flux';
 
 import HomePage from './pages/HomePage';
 import TrendingGiphyPage from './pages/TrendingGiphyPage';
+import SearchGiphyPage from './pages/SearchGiphyPage';
 
 const store = configureStore();
 
@@ -30,6 +31,7 @@ export default class GifPartyApp extends Component {
                     <Scene key="root">
                         <Scene key="home" initial={true} component={HomePage} title="GifParty" />
                         <Scene key="trending" component={TrendingGiphyPage} title="Trending"/>
+                        <Scene key="search" component={SearchGiphyPage} title="Search"/>
                     </Scene>
                 </Router>
             </Provider>
