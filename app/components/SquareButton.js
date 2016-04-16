@@ -1,5 +1,5 @@
-import React, {Component, Text, View, TouchableOpacity, StyleSheet} from "react-native";
-import AppStyleSheet, {getMaterialDesignElevation} from "../styles";
+import React, {Component, Text, View, TouchableOpacity, StyleSheet, Animated, Dimensions} from "react-native";
+import AppStyleSheet, {Styles, getMaterialDesignElevation} from "../styles";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 type Props = {
@@ -27,6 +27,16 @@ export default class SquareButton extends Component {
                 <Text style={AppStyleSheet.defaultButtonText}>{this.props.title}</Text>
             </TouchableOpacity>
         )
+    }
+}
+
+export class AnimatedSquareButton extends SquareButton{
+    render(){
+        return (
+            <Animated.View style={this.props.style}>
+                {super.render()}
+            </Animated.View>
+        );
     }
 }
 
