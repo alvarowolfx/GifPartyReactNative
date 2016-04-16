@@ -24,12 +24,17 @@ class HomePage extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <SquareButton onPress={() => Actions.trending()}
-                              title="Trending" icon="star"/>
-                <SquareButton onPress={() => this.goToSearchGiphyPage('cats')}
-                              title="Cats" icon="social-octocat"/>
-                <SquareButton onPress={() => this.goToSearchGiphyPage('civil war')}
-                              title="Civil War" icon="nuclear"/>
+                <SearchBox style={styles.searchBox} onSearch={(search) => this.goToSearchGiphyPage(search)}/>
+                <View style={styles.buttonsContainer}>
+                    <SquareButton onPress={() => Actions.trending()}
+                                  title="Trending" icon="star"/>
+                    <SquareButton onPress={() => this.goToSearchGiphyPage('cats')}
+                                  title="Cats" icon="social-octocat"/>
+                    <SquareButton onPress={() => this.goToSearchGiphyPage('civil war')}
+                                  title="Civil War" icon="nuclear"/>
+                    <SquareButton onPress={() => this.goToSearchGiphyPage('dogs')}
+                                  title="Dogs" icon="ios-paw"/>
+                </View>
             </View>
         )
     }
@@ -40,9 +45,18 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 64,
         backgroundColor: Styles.primaryColorDarker,
-        flexDirection: 'column',
+        flexDirection: 'column'
+    },
+    buttonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    searchBox:{
+        height: 45,
+        margin: 15
     }
 });
 
