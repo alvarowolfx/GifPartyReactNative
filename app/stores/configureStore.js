@@ -20,11 +20,9 @@ export default function configureStore(initialState){
         )
     );
     //HMR config for Redux
-    if(module.hot){
-        console.warn('hot module');
-
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers/index');
+    if(module.hot){        
+        module.hot.accept(() => {
+            const nextRootReducer = require('../reducers/index').default;            
             store.replaceReducer(nextRootReducer);
         });
     }
