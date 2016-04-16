@@ -38,7 +38,7 @@ export default class GiphyList extends Component {
         return (
             <TouchableHighlight onPress={() => this.onPress(rowData)}>
                 <View>
-                    <GiphyListItem {...rowData.images['fixed_height']}/>
+                    <GiphyListItem {...rowData.images['fixed_height_small']}/>
                 </View>
             </TouchableHighlight>
         );

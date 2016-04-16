@@ -34,7 +34,7 @@ describe('GiphyList', () => {
             entries: [{
                 id: 'aaa',
                 images: {
-                    fixed_height: {
+                    fixed_height_small: {
                         url: 'http://example.com'
                     }
                 }
