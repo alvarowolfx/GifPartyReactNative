@@ -2,22 +2,22 @@
  * Created by alvaroviebrantz on 06/04/16.
  */
 
-import React, {Component, Text, View, StyleSheet, TouchableOpacity, Alert} from "react-native";
-import { connect } from 'react-redux';
-import AppStyleSheet from '../styles';
-import GiphyList from '../components/GiphyList';
-import GiftedSpinner from 'react-native-gifted-spinner';
-import { searchGiphy } from '../reducers/giphy/giphyActions';
-import BaseGiphyPage from "./BaseGiphyPage";
+import React, {Component, Text, View, Alert} from "react-native";
+import {connect} from "react-redux";
+import AppStyleSheet from "../styles";
+import GiphyList from "../components/GiphyList";
+import GiftedSpinner from "react-native-gifted-spinner";
+import {searchGiphy} from "../reducers/giphy/giphyActions";
 
-class SearchGiphyPage extends BaseGiphyPage {
+class SearchGiphyPage extends Component {
     componentDidMount() {
-        this.props.dispatch(searchGiphy(this.props.currentSearch,24));
+        this.props.dispatch(searchGiphy(this.props.currentSearch, 24));
     }
 
-    render(){
+    render() {
         return (
-            <View style={[AppStyleSheet.pageContainer, this.props.loading ? AppStyleSheet.containerCentered : AppStyleSheet.containerFlexStart]}>
+            <View
+                style={[AppStyleSheet.pageContainer, this.props.loading ? AppStyleSheet.containerCentered : AppStyleSheet.containerFlexStart]}>
                 <Text style={AppStyleSheet.successButtonText}>Searching for {this.props.currentSearch}</Text>
                 { this.props.loading ?
                     <GiftedSpinner style={AppStyleSheet.loadingSpinner}/> :
@@ -31,13 +31,13 @@ class SearchGiphyPage extends BaseGiphyPage {
 function mapStateToProps(state) {
     let currentSearch = state.search.get('currentSearch');
     let fetchInfo = state.search.getIn(['searches', currentSearch]);
-    if(fetchInfo){
+    if (fetchInfo) {
         return {
             currentSearch,
             loading: state.search.getIn(['searches', currentSearch, 'isFetching']),
             entries: state.search.getIn(['searches', currentSearch, 'entries']).toJS()
         }
-    }else{
+    } else {
         return {
             currentSearch,
             loading: false,
