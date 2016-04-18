@@ -9,15 +9,22 @@ import AppStyleSheet from "../styles";
 import GiphyList from "../components/GiphyList";
 import GiftedSpinner from "react-native-gifted-spinner";
 import {searchGiphy} from "../actions/giphy";
+import type { Dispatch } from '../actions/types';
 import type { AppState } from '../reducers';
+import type { GiphyEntry } from '../models';
 
 type Props = {
-
+  searchGiphy: (query: string, quantity: number) => void,
+  loading: boolean,
+  currentSearch: string,
+  entries: Array<GiphyEntry>
 }
 
 class SearchGiphyPage extends Component {
+    props: Props;
+
     componentDidMount() {
-        this.props.dispatch(searchGiphy(this.props.currentSearch, 24));
+        this.props.searchGiphy(this.props.currentSearch, 24);
     }
 
     render() {
@@ -32,6 +39,12 @@ class SearchGiphyPage extends Component {
         )
     }
 
+}
+
+function mapActionsToProps(dispatch: Dispatch){
+  return {
+    searchGiphy: (query, quantity) => dispatch(searchGiphy(query, quantity))
+  }
 }
 
 function mapStateToProps(state: AppState) {
@@ -52,4 +65,4 @@ function mapStateToProps(state: AppState) {
     }
 }
 
-export default connect(mapStateToProps)(SearchGiphyPage);
+export default connect(mapStateToProps, mapActionsToProps)(SearchGiphyPage);

@@ -10,10 +10,20 @@ import AppStyleSheet from "../styles";
 import GiftedSpinner from "react-native-gifted-spinner";
 import GiphyList from "../components/GiphyList";
 import type { AppState } from '../reducers';
+import type { Dispatch } from '../actions/types'
+import type { GiphyEntry } from '../models';
+
+type Props = {
+  loading: boolean,
+  entries: Array<GiphyEntry>,
+  fetchTrendingGiphy: (quantity: number) => void
+}
 
 class TrendingGiphyPage extends Component {
+    props: Props;
+
     componentDidMount() {
-        this.props.dispatch(fetchTrendingGiphy(24));
+        this.props.fetchTrendingGiphy(24);
     }
 
     render() {
@@ -28,11 +38,17 @@ class TrendingGiphyPage extends Component {
     }
 }
 
+function mapActionsToProps(dispatch: Dispatch){
+  return {
+    fetchTrendingGiphy: (quantity: number) => dispatch(fetchTrendingGiphy(quantity))
+  }
+}
+
 function mapStateToProps(state: AppState) {
     return {
-        loading: state.trending.isFetching,
-        entries: state.trending.entries
+      loading: state.trending.isFetching,
+      entries: state.trending.entries
     }
 }
 
-export default connect(mapStateToProps)(TrendingGiphyPage);
+export default connect(mapStateToProps, mapActionsToProps)(TrendingGiphyPage);
