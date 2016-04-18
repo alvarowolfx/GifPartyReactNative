@@ -30,7 +30,7 @@ export function trendingGiphyReducer(state: TrendingState = trendingInitialState
 }
 
 export type SearchMap = {
-  [key:string]: Array<GiphyEntry>
+  [key:string]: TrendingState
 }
 
 export type SearchState = {

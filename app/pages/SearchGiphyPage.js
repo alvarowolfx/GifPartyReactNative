@@ -9,6 +9,11 @@ import AppStyleSheet from "../styles";
 import GiphyList from "../components/GiphyList";
 import GiftedSpinner from "react-native-gifted-spinner";
 import {searchGiphy} from "../actions/giphy";
+import type { AppState } from '../reducers';
+
+type Props = {
+
+}
 
 class SearchGiphyPage extends Component {
     componentDidMount() {
@@ -29,14 +34,14 @@ class SearchGiphyPage extends Component {
 
 }
 
-function mapStateToProps(state) {
-    let currentSearch = state.search['currentSearch'];
-    let fetchInfo = state.search['searches'][currentSearch];
+function mapStateToProps(state: AppState) {
+    let currentSearch = state.search.currentSearch;
+    let fetchInfo = state.search.searches[currentSearch];
     if (fetchInfo) {
         return {
             currentSearch,
-            loading: fetchInfo['isFetching'],
-            entries: fetchInfo['entries']
+            loading: fetchInfo.isFetching,
+            entries: fetchInfo.entries
         }
     } else {
         return {

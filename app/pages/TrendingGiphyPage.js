@@ -9,6 +9,7 @@ import {fetchTrendingGiphy} from "../actions/giphy";
 import AppStyleSheet from "../styles";
 import GiftedSpinner from "react-native-gifted-spinner";
 import GiphyList from "../components/GiphyList";
+import type { AppState } from '../reducers';
 
 class TrendingGiphyPage extends Component {
     componentDidMount() {
@@ -27,10 +28,10 @@ class TrendingGiphyPage extends Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: AppState) {
     return {
-        loading: state.trending['isFetching'],
-        entries: state.trending['entries']
+        loading: state.trending.isFetching,
+        entries: state.trending.entries
     }
 }
 
