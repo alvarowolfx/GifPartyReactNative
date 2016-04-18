@@ -1,16 +1,22 @@
 /**
  * Created by alvaroviebrantz on 06/04/16.
+ * @flow
  */
 
 import React, {Component, View, StyleSheet, Animated} from "react-native";
 import {connect} from "react-redux";
 import {Styles} from "../styles";
 import {Actions} from "react-native-router-flux";
-import {setCurrentSearch} from "../reducers/giphy/giphyActions";
+import {setCurrentSearch} from "../actions/giphy";
 import SearchBox from "../components/SearchBox";
-import {AnimatedSquareButton} from "../components/SquareButton";
+import SquareButton, {AnimatedSquareButton} from "../components/SquareButton";
+
+type State = {
+  anim: Animated.Value
+}
 
 class HomePage extends Component {
+    state: State;
 
     constructor(props) {
         super(props);
@@ -20,17 +26,17 @@ class HomePage extends Component {
         }
     }
 
-    goToSearchGiphyPage(query:string) {
-        console.log("Searching for : " + query);
-        this.props.dispatch(setCurrentSearch(query));
-        Actions.search();
-    }
-
-    componentDidMount() {
+    componentDidMount(){
         Animated.spring(this.state.anim, {
             toValue: 100,
             duration: 3000
         }).start();
+    }
+
+    goToSearchGiphyPage(query:string) {
+        console.log("Searching for : " + query);
+        this.props.dispatch(setCurrentSearch(query));
+        Actions.search();
     }
 
     render() {
@@ -50,7 +56,6 @@ class HomePage extends Component {
         let fromRight = {
             transform: [{translateX: animateFromRight}]
         };
-
         return (
             <View style={styles.container}>
                 <SearchBox style={styles.searchBox} onSearch={(search) => this.goToSearchGiphyPage(search)}/>
@@ -65,7 +70,7 @@ class HomePage extends Component {
                                           title="Civil War" icon="nuclear"
                                           style={fromLeft}/>
                     <AnimatedSquareButton onPress={() => this.goToSearchGiphyPage('dogs')}
-                                          title="Dogs" icon="ios-paw"
+                                  title="Dogs" icon="ios-paw"
                                           style={fromRight}/>
                 </View>
             </View>
@@ -77,17 +82,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 64,
-        backgroundColor: 'red',
+        backgroundColor: Styles.primaryColorDarker,
         flexDirection: 'column'
     },
     buttonsContainer: {
-        flex: 1,
+        flex: 5,
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    searchBox: {
+    searchBox:{
         height: 45,
         margin: 15
     }

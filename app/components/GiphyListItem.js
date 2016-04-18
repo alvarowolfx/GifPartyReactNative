@@ -3,35 +3,42 @@
  * @flow
  */
 
-import React, {Component, View, StyleSheet, Image, PropTypes, Text, Dimensions} from "react-native";
+import React, {Component, View, StyleSheet, Image, Dimensions} from "react-native";
 import GiftedSpinner from "react-native-gifted-spinner";
 
+type Props = {
+    url: string
+}
+
+type State = {
+    imageLoaded: boolean,
+    loadingImage: boolean
+}
+
 export default class GiphyListItem extends Component {
+    props:Props;
+    state:State;
 
-    static propTypes = {
-        id: PropTypes.string,
-        url: PropTypes.string.isRequired
-    };
-
-    constructor(props) {
+    constructor(props:Props) {
         super(props);
+
         this.state = {
-            loaded: false,
-            loading: false
-        }
+            imageLoaded: false,
+            loadingImage: false
+        };
     }
 
     onLoadEnd() {
         this.setState({
-            loaded: true,
-            loading: false
+            imageLoaded: true,
+            loadingImage: false
         })
     }
 
     onLoadStart() {
-        if (!this.state.loaded) {
+        if (!this.state.imageLoaded) {
             this.setState({
-                loading: true
+                loadingImage: true
             })
         }
     }
@@ -43,11 +50,11 @@ export default class GiphyListItem extends Component {
         let getWidthForImage = () => {
             let screen = Dimensions.get('window');
             return {
-                    width: screen.width/2
+                width: screen.width / 2
             };
         };
         let getDisplayStyle = () => {
-            if(this.state.loading){
+            if (this.state.loadingImage) {
                 return {
                     position: 'absolute'
                 }
@@ -56,7 +63,7 @@ export default class GiphyListItem extends Component {
         };
         return (
             <View style={[styles.container]}>
-                { this.state.loading ? <GiftedSpinner style={getWidthForImage()}/> : null }
+                { this.state.loadingImage ? <GiftedSpinner style={getWidthForImage()}/> : null }
                 <Image source={source} style={[
                         styles.image, getWidthForImage(), getDisplayStyle() ]}
                        onLoadStart={this.onLoadStart.bind(this)}
@@ -77,6 +84,5 @@ const styles = StyleSheet.create({
         height: 150,
         overflow: 'hidden'
     },
-    spinner: {
-    }
+    spinner: {}
 });

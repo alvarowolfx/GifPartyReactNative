@@ -1,3 +1,8 @@
+/**
+  * Created by alvaroviebrantz on 17/04/2016
+  * @flow
+  */
+
 import React, {Component, Text, View, TouchableOpacity, StyleSheet, Animated, Dimensions} from "react-native";
 import AppStyleSheet, {Styles, getMaterialDesignElevation} from "../styles";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -10,12 +15,6 @@ type Props = {
 
 export default class SquareButton extends Component {
     props:Props;
-
-    static get defaultProps(): Props{
-        return {
-            onPress: () => {}
-        }
-    }
 
     render() {
         return (

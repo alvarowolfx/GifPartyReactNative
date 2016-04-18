@@ -6,7 +6,7 @@
 
 import {StyleSheet, Dimensions} from 'react-native';
 
-function getMaterialDesignElevation(level: number): object{
+function getMaterialDesignElevation(level: number): number{
     let screen = Dimensions.get('window');
     let dp = screen.scale;
     const heights = [1, 3, 6, 10, 15];
@@ -91,4 +91,3 @@ const AppStyleSheet = StyleSheet.create({
 });
 
 export default AppStyleSheet;
-

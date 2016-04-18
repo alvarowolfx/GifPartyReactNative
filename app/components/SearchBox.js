@@ -1,27 +1,31 @@
+/**
+  * Created by alvaroviebrantz on 17/04/2016
+  * @flow
+  */
+
+
 import React, {View, Component, StyleSheet, TextInput, Text, TouchableOpacity} from "react-native";
 import AppStyleSheet from "../styles";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type Props = {
-    style?: StyleSheet,
+    style?: number,
     onSearch?: (search:string) => void
+}
+
+type State = {
+    search: string
 }
 
 export default class SearchBox extends Component {
     props:Props;
-
-    constructor(props) {
+    state: State;
+    constructor(props: Props) {
         super(props);
 
         this.state = {
             search: ''
         };
-    }
-
-    static get defaultProps(){
-        return {
-            onSearch: (search) => {}
-        }
     }
 
     render() {
@@ -30,7 +34,7 @@ export default class SearchBox extends Component {
                 <Ionicons name="search" size={30} style={[AppStyleSheet.defaultButton,styles.searchIcon]}/>
                 <TextInput style={styles.searchInput} onChangeText={(search) => this.setState({search})}
                            value={this.state.search}/>
-                <TouchableOpacity style={AppStyleSheet.defaultButton} onPress={() => this.props.onSearch(this.state.search)}>
+                <TouchableOpacity style={AppStyleSheet.defaultButton} onPress={() => this.props.onSearch && this.props.onSearch(this.state.search)}>
                     <Text style={AppStyleSheet.defaultButtonText}>Search</Text>
                 </TouchableOpacity>
             </View>

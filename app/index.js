@@ -20,7 +20,7 @@ const store = configureStore();
 
 export default class GifPartyApp extends Component {
 
-    constructor(props) {
+    constructor(props: any) {
         super(props);
     }
 
@@ -28,7 +28,7 @@ export default class GifPartyApp extends Component {
         return (
             <Provider store={store}>
                 <Router navigationBarStyle={styles.header} titleStyle={styles.headerTitle} backButtonTextStyle={styles.headerTitle} sceneStyle={styles.content}>
-                    <Scene key="root">                        
+                    <Scene key="root">
                         <Scene key="home" initial={true} component={HomePage} title="GifParty" />
                         <Scene key="trending" component={TrendingGiphyPage} title="Trending"/>
                         <Scene key="search" component={SearchGiphyPage} title="Search"/>
@@ -52,6 +52,3 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     }
 });
-
-
-

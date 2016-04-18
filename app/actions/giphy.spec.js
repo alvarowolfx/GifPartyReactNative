@@ -1,5 +1,5 @@
 /**
- * Created by alvaroviebrantz on 06/03/16.
+ * Created by alvaroviebrantz on 06/03/16. 
  */
 
 import { List, Map, fromJS } from 'immutable';
@@ -8,7 +8,7 @@ import fetchMock from 'fetch-mock';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 
-import { fetchTrendingGiphy, searchGiphy } from './giphyActions';
+import { fetchTrendingGiphy, searchGiphy } from './giphy';
 
 describe('giphyActions', () => {
     describe('fetchTrendingGiphy', () => {

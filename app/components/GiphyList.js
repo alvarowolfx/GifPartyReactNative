@@ -3,38 +3,39 @@
  * @flow
  */
 
-import React, {Component, View, StyleSheet, Image, PropTypes, ListView, Text, TouchableHighlight} from "react-native";
-import GiphyListItem from './GiphyListItem';
+'use strict';
+
+import type { GiphyEntry } from "../models";
+import React, {Component, View, StyleSheet, ListView, TouchableHighlight} from "react-native";
+import GiphyListItem from "./GiphyListItem";
+
+type Props = {
+    entries: Array<GiphyEntry>,
+    onRowSelected?: (entry:GiphyEntry) => void
+}
+
+type State = {
+    dataSource: ListView.DataSource
+}
 
 export default class GiphyList extends Component {
+    props:Props;
+    state:State;
 
-    static propTypes = {
-        entries: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            images: PropTypes.object
-        })),
-        onRowSelected: PropTypes.func
-    };
-
-    static get defaultProps(){
-        return {
-            onRowSelected: row => {}
-        }
-    }
-
-    constructor(props){
+    constructor(props:Props) {
         super(props);
+
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows(this.props.entries)
-        }
+        };
     }
 
-    onPress(rowData: any){
-        this.props.onRowSelected(rowData);
+    onPress(rowData:GiphyEntry) {
+        this.props.onRowSelected && this.props.onRowSelected(rowData);
     }
 
-    renderCell(rowData: any, sectionID: number, rowID: number){
+    renderCell(rowData:GiphyEntry, sectionID:number, rowID:number) {
         return (
             <TouchableHighlight onPress={() => this.onPress(rowData)}>
                 <View>
@@ -57,7 +58,7 @@ export default class GiphyList extends Component {
             />
         )
     }
-};
+}
 
 const styles = StyleSheet.create({
     content: {

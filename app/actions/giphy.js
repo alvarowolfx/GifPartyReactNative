@@ -1,65 +1,60 @@
 /**
  * Created by alvaroviebrantz on 06/03/16.
+ * @flow
  */
 
-export const REQUEST_TRENDING_GIPHY = 'REQUEST_TRENDING_GIPHY';
-export const REQUEST_TRENDING_GIPHY_SUCCESS = 'REQUEST_TRENDING_GIPHY_SUCCESS';
-export const REQUEST_TRENDING_GIPHY_FAILED = 'REQUEST_TRENDING_GIPHY_FAILED';
-
-export const REQUEST_SEARCH_GIPHY = 'REQUEST_SEARCH_GIPHY';
-export const SET_CURRENT_SEARCH = 'SET_CURRENT_SEARCH';
-export const REQUEST_SEARCH_GIPHY_SUCCESS = 'REQUEST_SEARCH_GIPHY_SUCCESS';
-export const REQUEST_SEARCH_GIPHY_FAILED = 'REQUEST_SEARCH_GIPHY_FAILED';
+import type {Action, ThunkAction} from './types';
+import type { GiphyEntry } from '../models';
 
 const GIPHY_API_ENDPOINT = 'http://api.giphy.com/v1/gifs';
 const GIPHY_API_KEY = 'dc6zaTOxFJmzC';
 
-function requestTrendingGiphySuccess(entries) {
+function requestTrendingGiphySuccess(entries: Array<GiphyEntry>): Action {
     return {
-        type: REQUEST_TRENDING_GIPHY_SUCCESS,
+        type: 'REQUEST_TRENDING_GIPHY_SUCCESS',
         entries
     }
 }
 
-function requestTrendingGiphyFailed(error) {
+function requestTrendingGiphyFailed(error: Error): Action {
     return {
-        type: REQUEST_TRENDING_GIPHY_FAILED,
+        type: 'REQUEST_TRENDING_GIPHY_FAILED',
         error
     }
 }
 
-function requestTrendingGiphy(quantity:number) {
+function requestTrendingGiphy(quantity:number): Action {
     return {
-        type: REQUEST_TRENDING_GIPHY,
+        type: 'REQUEST_TRENDING_GIPHY',
         quantity
     }
 }
 
-function requestSearchGiphySuccess(query, entries) {
+function requestSearchGiphySuccess(query:string, entries: Array<GiphyEntry>): Action{
     return {
-        type: REQUEST_SEARCH_GIPHY_SUCCESS,
+        type: 'REQUEST_SEARCH_GIPHY_SUCCESS',
         entries,
         query
     }
 }
 
-function requestSearchGiphyFailed(query, error) {
+function requestSearchGiphyFailed(query: string, error: Error): Action {
     return {
-        type: REQUEST_SEARCH_GIPHY_FAILED,
+        type: 'REQUEST_SEARCH_GIPHY_FAILED',
         query,
         error
     }
 }
 
-function requestSearchGiphy(query:string, quantity:number) {
+function requestSearchGiphy(query:string, quantity:number): Action {
     return {
-        type: REQUEST_SEARCH_GIPHY,
+        type: 'REQUEST_SEARCH_GIPHY',
         query,
         quantity
     }
 }
 
-export function searchGiphy(query:string, quantity:number) {
+export function searchGiphy(query:string, quantity:number): ThunkAction {
     return dispatch => {
         dispatch(requestSearchGiphy(query, quantity));
         let resource = '/search';
@@ -75,7 +70,7 @@ export function searchGiphy(query:string, quantity:number) {
     };
 }
 
-export function fetchTrendingGiphy(quantity:number) {
+export function fetchTrendingGiphy(quantity:number): ThunkAction {
     return dispatch => {
         dispatch(requestTrendingGiphy(quantity));
         let resource = '/trending';
@@ -90,9 +85,9 @@ export function fetchTrendingGiphy(quantity:number) {
     };
 }
 
-export function setCurrentSearch(query:string){
+export function setCurrentSearch(query:string): Action{
     return {
-        type: SET_CURRENT_SEARCH,
+        type: 'SET_CURRENT_SEARCH',
         query
     }
 }

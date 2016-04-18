@@ -11,11 +11,6 @@ import GiftedSpinner from 'react-native-gifted-spinner';
 
 describe('GiphyListItem', () => {
 
-    it('should expect some shape of data', () => {
-        expect(GiphyListItem.propTypes).to.have.property('id', PropTypes.string);
-        expect(GiphyListItem.propTypes).to.have.property('url', PropTypes.string.isRequired);
-    });
-
     it('should be wrapped on a View and show in a Image the url passed', () => {
         const props = {
             id: 'aaa',
@@ -37,18 +32,18 @@ describe('GiphyListItem', () => {
             url: 'http://example.com'
         };
         const component = shallow(<GiphyListItem {...props}/>);
-        expect(component).to.have.state('loaded').to.be.false;
-        expect(component).to.have.state('loading').to.be.false;
+        expect(component).to.have.state('imageLoaded').to.be.false;
+        expect(component).to.have.state('loadingImage').to.be.false;
 
         let image = component.findWhere(t => t.node.type == Image);
 
         image.simulate('loadStart');
-        expect(component).to.have.state('loading').to.be.true;
+        expect(component).to.have.state('loadingImage').to.be.true;
         expect(component.findWhere(t => t.node.type == GiftedSpinner)).have.length(1);
 
         image.simulate('load');
-        expect(component).to.have.state('loading').to.be.false;
-        expect(component).to.have.state('loaded').to.be.true;
+        expect(component).to.have.state('loadingImage').to.be.false;
+        expect(component).to.have.state('imageLoaded').to.be.true;
         expect(component.findWhere(t => t.node.type == GiftedSpinner)).have.length(0);
     })
 

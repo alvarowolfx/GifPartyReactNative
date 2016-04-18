@@ -31,6 +31,7 @@
     "chai-immutable": "^1.5.3",
     "enzyme": "^2.0.0",
     "fetch-mock": "^4.1.1",
+    "flow-bin": "^0.23.0",
     "mocha": "^2.4.5",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",

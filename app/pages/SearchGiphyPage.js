@@ -1,5 +1,6 @@
 /**
  * Created by alvaroviebrantz on 06/04/16.
+ * @flow
  */
 
 import React, {Component, Text, View, Alert} from "react-native";
@@ -7,7 +8,7 @@ import {connect} from "react-redux";
 import AppStyleSheet from "../styles";
 import GiphyList from "../components/GiphyList";
 import GiftedSpinner from "react-native-gifted-spinner";
-import {searchGiphy} from "../reducers/giphy/giphyActions";
+import {searchGiphy} from "../actions/giphy";
 
 class SearchGiphyPage extends Component {
     componentDidMount() {
@@ -29,13 +30,13 @@ class SearchGiphyPage extends Component {
 }
 
 function mapStateToProps(state) {
-    let currentSearch = state.search.get('currentSearch');
-    let fetchInfo = state.search.getIn(['searches', currentSearch]);
+    let currentSearch = state.search['currentSearch'];
+    let fetchInfo = state.search['searches'][currentSearch];
     if (fetchInfo) {
         return {
             currentSearch,
-            loading: state.search.getIn(['searches', currentSearch, 'isFetching']),
-            entries: state.search.getIn(['searches', currentSearch, 'entries']).toJS()
+            loading: fetchInfo['isFetching'],
+            entries: fetchInfo['entries']
         }
     } else {
         return {

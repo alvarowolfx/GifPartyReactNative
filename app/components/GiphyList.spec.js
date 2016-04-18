@@ -11,15 +11,6 @@ import GiphyListItem from "./GiphyListItem";
 
 describe('GiphyList', () => {
 
-    it('should expect some shape of data', () => {
-        /* How to test propTypes Shape ?
-        expect(GiphyList.propTypes).to.have.property('entries', PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            images: PropTypes.object
-        }).isRequired));*/
-        expect(GiphyList.propTypes).to.have.property('onRowSelected', PropTypes.func);
-    });
-
     it('should use a ListView', () => {
         const props = {
             entries: []
@@ -35,7 +26,9 @@ describe('GiphyList', () => {
                 id: 'aaa',
                 images: {
                     fixed_height_small: {
-                        url: 'http://example.com'
+                        url: 'http://example.com',
+                        height: '200',
+                        width: '200'
                     }
                 }
             }],

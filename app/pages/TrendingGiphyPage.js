@@ -1,10 +1,11 @@
 /**
  * Created by alvaroviebrantz on 06/04/16.
+ * @flow
  */
 
 import React, {Component, View, Alert} from "react-native";
 import {connect} from "react-redux";
-import {fetchTrendingGiphy} from "../reducers/giphy/giphyActions";
+import {fetchTrendingGiphy} from "../actions/giphy";
 import AppStyleSheet from "../styles";
 import GiftedSpinner from "react-native-gifted-spinner";
 import GiphyList from "../components/GiphyList";
@@ -28,8 +29,8 @@ class TrendingGiphyPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        loading: state.trending.get('isFetching'),
-        entries: state.trending.get('entries').toJS()
+        loading: state.trending['isFetching'],
+        entries: state.trending['entries']
     }
 }
 

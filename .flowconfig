@@ -17,6 +17,7 @@
 .*/node_modules/fbjs/lib/Map.js
 .*/node_modules/fbjs/lib/fetch.js
 .*/node_modules/fbjs/lib/ExecutionEnvironment.js
+.*/node_modules/fbjs/lib/Deferred.js.flow
 .*/node_modules/fbjs/lib/ErrorUtils.js
 
 # Flow has a built-in definition for the 'react' module which we prefer to use
@@ -64,7 +65,7 @@
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow
-flow/
+flow-lib.js
 
 [options]
 module.system=haste
@@ -86,4 +87,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(2[0-2]\\|1[0-9]\\|[0-9
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 
 [version]
-0.22.0
+0.23.0
