@@ -1,7 +1,7 @@
 # GifParty App
 This app was developed for demo purposes using React Native. So I'm sharing the code for those who are interested in studying.
 
-The presentation about the app can be seen [here](http://www.slideshare.net/alvarowolfx/react-native-first-impression).
+The presentation about the app can be seen [here](http://www.slideshare.net/alvarowolfx/developing-apps-with-react-native). It was presented on [FrontInCuaiba](http://frontincuiaba.com.br).
 
 ## Pre requirements
 - Node.js and NPM installed (I recommend to do something like [this](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) to install global packages without sudo )
@@ -23,4 +23,3 @@ react-native run-ios
 # For Android
 react-native run-android
 ```
-
